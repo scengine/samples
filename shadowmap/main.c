@@ -124,7 +124,7 @@ int main (void)
     SCE_Scene_AddCamera (scene, cam);
     SCE_Scene_AddCamera (scene, lcam);
 
-    scene->states.lighting = SCE_TRUE;
+    scene->state->lighting = SCE_TRUE;
 
     while (loop) {
         tm = SDL_GetTicks ();

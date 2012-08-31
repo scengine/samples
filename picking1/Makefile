@@ -1,8 +1,6 @@
-# Makefile by Yno, all rights freeds :D
-
 EXEC=scetest
 OPTI=-g
-PKGS=sdl sceinterface
+PKGS=sdl sceinterface gl
 
 CC ?= gcc
 CFLAGS = -Wall $(OPTI) `pkg-config $(PKGS) --cflags`

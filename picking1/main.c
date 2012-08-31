@@ -93,9 +93,9 @@ int main (void)
     SCE_Inert_Accum (&rx, 1);
     SCE_Inert_Accum (&ry, 1);
 
-    scene->states.lighting = SCE_TRUE;
-    scene->states.frustum_culling = SCE_FALSE;
-    scene->states.lod = SCE_FALSE;
+    scene->state->lighting = SCE_TRUE;
+    scene->state->frustum_culling = SCE_FALSE;
+    scene->state->lod = SCE_FALSE;
     temps = 0;
 
     glPointSize (3.0);
@@ -143,9 +143,10 @@ int main (void)
                 switch (ev.key.keysym.sym) {
                 case SDLK_ESCAPE: loop = 0; break;
                 case SDLK_f:
-                    scene->states.frustum_culling = !scene->states.frustum_culling; break;
+                    scene->state->frustum_culling = !scene->state->frustum_culling; 
+break;
                 case SDLK_l:
-                    scene->states.lod = !scene->states.lod; break;
+                    scene->state->lod = !scene->state->lod; break;
                 case SDLK_t:
                     printf ("fps : %.2f\n", 1000./temps);
                     printf ("update time : %d ms\n", i);

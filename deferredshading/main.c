@@ -265,7 +265,7 @@ int main (void)
 #endif
 
     verif (SCEE_HaveError ())
-    scene->states.lighting = SCE_TRUE;
+    scene->state->lighting = SCE_TRUE;
     
     while (loop) {
         tm = SDL_GetTicks ();

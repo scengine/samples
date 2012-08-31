@@ -95,9 +95,9 @@ int main (void)
     SCE_Inert_Accum (&rx, 1);
     SCE_Inert_Accum (&ry, 1);
 
-    scene->states.lighting = SCE_TRUE;
-    scene->states.frustum_culling = SCE_FALSE;
-    scene->states.lod = SCE_FALSE;
+    scene->state->lighting = SCE_TRUE;
+    scene->state->frustum_culling = SCE_FALSE;
+    scene->state->lod = SCE_FALSE;
     temps = 0;
 
     while (loop) {
