@@ -5,7 +5,7 @@
 
 void main (void)
 {
-  gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
+  gl_Position = gl_ModelViewMatrix * gl_Vertex;
 }
 
 [Control shader]
@@ -20,6 +20,9 @@ void main (void)
     float TessLevelInner = 2;
     float TessLevelOuter = 2;
     #define ID gl_InvocationID
+
+//    TessLevelInner = clamp (4.0 / length (gl_in[ID].gl_Position), 1.0, 7.0);
+//    TessLevelOuter = TessLevelInner;
 
     gl_out[ID].gl_Position = gl_in[ID].gl_Position;
     if (ID == 0) {
@@ -37,8 +40,8 @@ void main (void)
 #version 410
 #extension GL_EXT_gpu_shader4 : require
 
-//layout(triangles, equal_spacing, cw) in;
-layout(triangles, fractional_odd_spacing, cw) in;
+layout(triangles, equal_spacing, cw) in;
+//layout(triangles, fractional_odd_spacing, cw) in;
 //layout(quads, fractional_odd_spacing, cw) in;
 
 void main (void)
@@ -47,7 +50,8 @@ void main (void)
     vec4 p0 = gl_TessCoord.x * gl_in[0].gl_Position;
     vec4 p1 = gl_TessCoord.y * gl_in[1].gl_Position;
     vec4 p2 = gl_TessCoord.z * gl_in[2].gl_Position;
-    gl_Position = p0 + p1 + p2;
+    vec4 pos = p0 + p1 + p2;
+    gl_Position = gl_ProjectionMatrix * pos;
 #else
     vec4 p0 = mix (gl_in[1].gl_Position, gl_in[0].gl_Position, gl_TessCoord.x);
     vec4 p1 = mix (gl_in[2].gl_Position, gl_in[3].gl_Position, gl_TessCoord.x);
