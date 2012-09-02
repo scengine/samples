@@ -27,10 +27,15 @@ bool outshadow (vec3 pos, vec3 lightpos)
 {
     vec3 dir = pos - lightpos;
     float len = length (dir);
+#if 0
     float dist1 = len * sce_depth_factor;
+#else
+    /* TODO: hardcoded value SCE_DEFERRED_POINT_LIGHT_DEPTH_FACTOR */
+    float dist1 = len * (1.0/1000.0);
+#endif
     /* NOTE: does the vector need to be normalized? */
     float dist2 = textureCube (sce_shadow_cube_map, dir / len).x;
-    return dist1 < dist2 + 0.012;
+    return dist1 < dist2 + (1.0/1000.0) * 0.1;
 }
 
 float shadow_intensity (vec3 pos, vec3 lightpos)

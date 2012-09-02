@@ -210,15 +210,14 @@ vec4 csm_getcoord (vec3 pos, out vec4 clr)
     int i;
     for (i = 0; i < sce_csm_num_splits; i++) {
         coord = sce_light_viewproj[i] * vec4 (pos, 1.0);
-        coord.xy /= coord.w;
         if (abs (coord.x) < 1.0 && abs (coord.y) < 1.0 && coord.z < 1.0)
             break;
     }
 
-    coord.xy = coord.xy * 0.5 + vec2 (0.5);
+    coord.xyz = coord.xyz * 0.5 + vec3 (0.5);
     coord.x = (i + coord.x) / sce_csm_num_splits;
-    coord.z -= 0.000028 * ((i * 3.0) + 1);
-#if 1
+    coord.z -= 0.000014 * ((i * 3.0) + 1);
+#if 0
     clr = vec4 (1.0);
 #else
     if (i == 0)

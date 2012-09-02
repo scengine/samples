@@ -153,9 +153,9 @@ void main ()
 
 #if SCE_DEFERRED_USE_SHADOWS
     vec4 coord = sce_light_viewproj * vec4 (pos, 1.0);
-    coord.z = dist * sce_depth_factor - 0.00001;
-    coord.xy /= coord.w;
-    coord.xy = coord.xy * 0.5 + vec2 (0.5);
+    coord.xyz /= coord.w;
+    coord.xyz = coord.xyz * 0.5 + vec3 (0.5);
+    coord.z -= 0.0004;
     att *= shadow_intensity (coord.xyz);
     if (att > 0.0)
 #endif
