@@ -294,6 +294,7 @@ int main (void)
 #define TIME_ELAPSED 0.001 /* that's not true obviously */
         SCE_ParticleSys_Update (psys, TIME_ELAPSED);
         SCE_Geometry_Update (geom);
+        SCE_Mesh_UpdateNumVertices (mesh);
         SCE_RUpdateModifiedBuffers ();
 
         SCE_Scene_Update (scene, cam, NULL, 0);
