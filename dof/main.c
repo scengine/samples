@@ -73,12 +73,22 @@ int main (void)
     SCE_Shader_Build (srender);
     verif (SCEE_HaveError ())
 
-    blurred1 = SCE_Texture_Create (SCE_RENDER_COLOR, MW, MH);
-    blurred2 = SCE_Texture_Create (SCE_RENDER_COLOR, MW, MH);
-    tex1 = SCE_Texture_Create (SCE_RENDER_COLOR, MW, MH);
-    depthmap = SCE_Texture_Create (SCE_TEX_2D, MW, MH);
+    blurred1 = SCE_Texture_Create (SCE_TEX_2D, MW, MH, 0);
+    SCE_Texture_SetupFramebuffer (blurred1, SCE_RENDER_COLOR, 0, 0, 0);
+    SCE_Texture_Build (blurred1, 0);
+    blurred2 = SCE_Texture_Create (SCE_TEX_2D, MW, MH, 0);
+    SCE_Texture_SetupFramebuffer (blurred2, SCE_RENDER_COLOR, 0, 0, 0);
+    SCE_Texture_Build (blurred2, 0);
+
+    tex1 = SCE_Texture_Create (SCE_TEX_2D, MW, MH, 0);
+    SCE_Texture_SetupFramebuffer (tex1, SCE_RENDER_COLOR, 0, SCE_TRUE, SCE_FALSE);
+    SCE_Texture_Build (tex1, 0);
+
+    depthmap = SCE_Texture_Create (SCE_TEX_2D, MW, MH, 0);
+    SCE_Texture_SetupFramebuffer (depthmap, SCE_RENDER_COLOR, 0, 0, 0);
     SCE_Texture_Build (depthmap, SCE_FALSE);
     verif (SCEE_HaveError ())
+
     SCE_Texture_AddRenderTexture (tex1, SCE_COLOR_BUFFER1, depthmap);
     verif (SCEE_HaveError ())
     SCE_Texture_SetUnit (depthmap, 1);

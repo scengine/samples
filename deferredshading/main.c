@@ -72,11 +72,16 @@ int main (void)
     SCE_Scene_AddCamera (scene, cam);
     
     /* G-buffer creation */
-    gbuffer = SCE_Texture_Create (SCE_RENDER_COLOR, MW, MH);
+    gbuffer = SCE_Texture_Create (SCE_TEX_2D, MW, MH, 0);
+    SCE_Texture_SetupFramebuffer (gbuffer, SCE_RENDER_COLOR, 0, 0, 0);
     SCE_Texture_Build (gbuffer, SCE_FALSE);
-    depthmap = SCE_Texture_Create (SCE_RENDER_DEPTH, MW, MH);
+
+    depthmap = SCE_Texture_Create (SCE_TEX_2D, MW, MH, 0);
+    SCE_Texture_SetupFramebuffer (depthmap, SCE_RENDER_DEPTH, 0, 0, 0);
     SCE_Texture_Build (depthmap, SCE_FALSE);
-    normalmap = SCE_Texture_Create (SCE_TEX_2D, MW, MH);
+
+    normalmap = SCE_Texture_Create (SCE_TEX_2D, MW, MH, 0);
+    SCE_Texture_SetupFramebuffer (normalmap, SCE_RENDER_COLOR, 0, 0, 0);
     SCE_Texture_Build (normalmap, SCE_FALSE);
     verif (SCEE_HaveError ())
 

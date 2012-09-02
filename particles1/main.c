@@ -163,7 +163,7 @@ int main (void)
     SCE_Particle_SetMaxParticles (&psys->buf, EMIT_PARTICLE * (0.1 + MIN_LIFE + (MAX_LIFE - MIN_LIFE) / 2));
     {
         int prout[7] = {1, SCE_POSITION, SCE_VERTICES_TYPE, 3,
-                        SCE_COLOR, SCE_UNSIGNED_BYTE, 3};
+                           SCE_COLOR,    SCE_UNSIGNED_BYTE, 3};
         SCE_Particle_BuildArrays (&psys->buf, SCE_POINTS, prout, 2);
     }
     verif (SCEE_HaveError())
@@ -196,7 +196,7 @@ int main (void)
     SCE_Material_EnablePointSprite (material);
     SCE_Material_SetBlending (material, GL_ONE, GL_ONE);
     SCE_Material_EnableBlending (material);
-    tex = SCE_Texture_Load (0, 0, 0, 0, 0, "../data/sprite.png", NULL);
+    tex = SCE_Texture_Load (SCE_TEX_2D, 0, 0, 0, 0, "../data/sprite.png", NULL);
     SCE_Texture_Build (tex, 1);
     SCE_SceneEntity_SetMaterial (entity, material);
     SCE_SceneEntity_AddTexture (entity, tex);

@@ -70,7 +70,8 @@ int main (void)
     SCE_Matrix4_Projection (SCE_Camera_GetProj (lcam), 70.*RAD, (float)DW/DH, 1.0, 1000.);
 
     /* render buffer (depth) */
-    fb = SCE_Texture_Create (SCE_RENDER_DEPTH, DW, DH);
+    fb = SCE_Texture_Create (SCE_TEX_2D, DW, DH, 0);
+    SCE_Texture_SetupFramebuffer (fb, SCE_RENDER_DEPTH, 0, 0, 0);
     verif (SCEE_HaveError ())
 
     /* final render shader */
