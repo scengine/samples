@@ -1,6 +1,6 @@
 [Pixel shader]
 
-#version 120
+//#version 120
 
 // width
 #define W (1024.0 / 2.0)

@@ -25,7 +25,7 @@ void main (void)
 
 [Pixel Shader]
 
-#version 120
+//#version 120
 
 #define RANGE 2000.0
 
